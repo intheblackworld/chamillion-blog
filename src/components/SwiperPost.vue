@@ -20,7 +20,7 @@
             :class="`item-img`"
           />
           <div class="flex">
-            <div class="tag-list flex">
+            <div class="tag-list flex-c">
               <div
                 class="tag"
                 v-for="tag in post.node.tags.slice(0, 2)"

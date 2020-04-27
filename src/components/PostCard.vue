@@ -1,9 +1,9 @@
 <template>
-  <div class="post flex wrap">
+  <div class="post flex-c wrap">
     <img :src="post.image.src" alt="" class="post-cover">
     <div class="content">
-      <div class="flex">
-        <div class="tag-list flex">
+      <div class="flex-at flex-js">
+        <div class="tag-list flex-c">
           <g-link :to="tag.path" class="tag" v-for="tag in post.tags" :key="tag.title">{{tag.title}}</g-link>
         </div>
         <div class="date">
@@ -53,6 +53,7 @@ export default {
 
 .post-cover {
   width: 100%;
+  height: auto;
   min-height: 50vh;
   object-fit: cover;
   padding-right: 10px;
@@ -77,7 +78,7 @@ export default {
   letter-spacing: 1px;
   line-height: 1.7;
   margin-bottom: 15px;
-  height: 80px;
+  min-height: 80px;
   text-overflow: ellipsis;
   overflow: hidden;
 }
@@ -103,6 +104,16 @@ export default {
 
   &:hover {
     opacity: .9;
+  }
+}
+
+/* 螢幕尺寸標準 */
+/* 手機尺寸 */
+@media screen and (max-width: 767px) {
+  .post-cover {
+    padding-right: 0;
+    height: auto;
+    display: block;
   }
 }
 </style>

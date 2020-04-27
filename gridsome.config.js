@@ -9,8 +9,12 @@ module.exports = {
   siteDescription: '', // meta description
   // siteUrl: 'chamillioner.com',
   // github page
-  siteUrl: 'https://intheblackworld.github.io',
-  pathPrefix: '/chamillion-blog',
+  // siteUrl: 'https://intheblackworld.github.io',
+  // pathPrefix: '/chamillion-blog',
+
+  // CNAME
+  siteUrl: 'https://chamillioner.com',
+
   plugins: [
     {
       use: 'gridsome-plugin-gtm',

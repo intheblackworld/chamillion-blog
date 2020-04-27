@@ -1,9 +1,9 @@
 <template>
-  <div class="post flex wrap">
+  <div class="post flex-c wrap">
     <img :src="post.image.src" alt="" class="post-cover">
     <div class="content">
-      <div class="flex">
-        <div class="tag-list flex">
+      <div class="flex-at flex-js">
+        <div class="tag-list flex-c">
           <g-link :to="tag.path" class="tag" v-for="tag in post.tags" :key="tag.title">{{tag.title}}</g-link>
         </div>
         <div class="date">
@@ -86,7 +86,7 @@ export default {
   letter-spacing: 1px;
   line-height: 1.5;
   margin-bottom: 15px;
-  height: 80px;
+  min-height: 80px;
   text-overflow: ellipsis;
   overflow: hidden;
 }
@@ -125,6 +125,8 @@ export default {
   .post-cover {
     width: 100%;
     height: auto;
+    display: block;
+    padding-right: 0;
   }
   .content {
     width: 100%;
