@@ -30,7 +30,7 @@
       />
     </div>
     <div :class="`nav ${isFixHeader ? 'fixheader' : ''}`">
-      <div class="nav-container">
+      <div class="nav-container" @click="isShowMenu = false">
         <ul :class="`nav-list ${isShowMenu ? 'show' : ''}`">
           <g-link
             tag="li"
