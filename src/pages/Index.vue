@@ -1,15 +1,6 @@
 <template>
   <Layout>
-    <!-- @TODO -->
-    <!-- <div class="sereis-block">
-        <div class="block-title">
-          系列文章
-        </div>
-
-        <div class="swiper">
-
-        </div>
-      </div> -->
+    <!-- @TODO 熱門文章 -->
     <div class="block-title">最新文章</div>
     <PostCard :post="$page.allPost.edges[0].node" />
     <div class="block-posts">
@@ -21,29 +12,42 @@
     </div>
     <!-- @TODO 系列文章 -->
     <!-- 展示兩篇，輪播 -->
-    <!-- <div class="block-title">精實創業系列</div>
-          <div class="block-title">免費線上課程</div>
-          <div class="block-title">三萬一品系列</div> -->
-
+    <div
+      class="mt-40"
+      v-show="edge.node.belongsTo.edges.length > 2"
+      v-for="edge in $page.allSeries.edges"
+      :key="edge.node.title"
+    >
+      <g-link class="block-title link flex-jb" :to="edge.node.path">
+        <div>{{edge.node.title}}系列</div>
+        <font-awesome :icon="['fa', 'arrow-right']" />
+      </g-link>
+      <SwiperPost :postList="edge.node.belongsTo.edges" />
+    </div>
   </Layout>
 </template>
 
 <script>
 import PostList from '@/components/PostList'
 import PostCard from '@/components/PostCard'
+import SwiperPost from '@/components/SwiperPost.vue'
 export default {
   components: {
     PostList,
     PostCard,
+    SwiperPost,
   },
   metaInfo: {
-    meta: [
-      { name: 'title', content: 'Mr.變色龍' }
-    ]
+    meta: [{ name: 'title', content: 'Mr.變色龍' }],
   },
 
   mounted() {
-    console.log(this.$page.series_lean_canvas)
+    // console.log(this.$page.allSeries.edges)
+  },
+  methods: {
+    seriesPostData(edges) {
+      return _.orderBy(edges, edge => edge.node.seriesIndex)
+    },
   },
 }
 </script>
@@ -90,6 +94,7 @@ query {
         datetime
         path
         image
+        seriesIndex
         tags {
           id
           title
@@ -99,34 +104,47 @@ query {
         series {
           id
           title
-          # path
         }
       }
     }
   }
   # @TODO 系列文章
-  # series_lean_canvas: allPost (filter: { 
-  #   series: { contains: ["從零到一的PMF"]}}) {
-  #   edges {
-  #     node {
-  #       id
-  #       title
-  #       timeToRead
-  #       description
-  #       datetime
-  #       path
-  #       image
-  #       tags {
-  #         id
-  #         title
-  #         path
-  #       }
+  allSeries {
+    totalCount
+    edges {
+      node {
+        id
+        title
+        path
 
-  #       series {
-  #         title
-  #       }
-  #     }
-  #   }
-  # }
+        belongsTo(sortBy: "seriesIndex", order: ASC) {
+          totalCount
+          edges {
+            node {
+              ... on Post {
+                id
+                title
+                path
+                image
+                datetime
+                seriesIndex
+                tags {
+                  id
+                  title
+                }
+
+                series {
+                  id
+                  title
+                  path
+                }
+                
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 </page-query>

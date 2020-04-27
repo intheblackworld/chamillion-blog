@@ -8,7 +8,7 @@
       <div class="cover-mask"></div>
       <div class="post-info">
         <div class="post-title">
-          {{$page.post.title}}
+          {{$page.post.series ? `${$page.post.series[0].title}系列${$page.post.seriesIndex} - ` : ''}}{{$page.post.title}}
         </div>
         <div class="tag-list flex-ac">
           <g-link
@@ -42,7 +42,7 @@
               :key="post.node.id"
               class="extend-link"
             >
-              {{post.node.title}}
+              {{post.node.series ? `${post.node.series[0].title}系列${post.node.seriesIndex} - ` : ''}}{{post.node.title}}
             </g-link>
           </div>
 
@@ -57,16 +57,16 @@
             class="block-title"
             v-if="seriesPostData"
           >
-            系列文章
+            {{$page.post.series[0].title}} 系列文章
           </div>
-          <SeriesPost :seriesPost="seriesPostData" />
+          <SeriesPost :postList="seriesPostData" />
         </div>
 
         <div class="content">
           <div class="block-title">
             相關文章
           </div>
-          <RelatedPost :relatedPost="relatePostData" />
+          <SwiperPost :postList="relatePostData" />
         </div>
       </div>
       <Side />
@@ -80,6 +80,7 @@
       title
       description
       path
+      seriesIndex
       image(width:1600, height:800)
       # image_caption
       excerpt
@@ -88,22 +89,6 @@
       timeToRead
       extends
 
-      category {
-        id
-        title
-        path
-        belongsTo(limit:4) {
-          totalCount
-          edges {
-            node {
-              ... on Post {
-                title
-                path
-              }
-            }
-          }
-        }
-      }
       tags {
         id
         title
@@ -118,11 +103,48 @@
                 title
                 path
                 image
+                datetime
+                seriesIndex
+
+                series {
+                  id
+                  title
+                  path
+                }
+
                 tags {
                   id
                   title
                 }
+              }
+            }
+          }
+        }
+      }
+
+      series {
+        id
+        title
+        path
+
+        belongsTo {
+          totalCount
+          edges {
+            node {
+              ... on Post {
+                id
+                title
+                path
+                image
                 datetime
+                seriesIndex
+
+                series {
+                  id
+                  title
+                  path
+                }
+                
               }
             }
           }
@@ -140,6 +162,14 @@
           datetime
           path
           image
+
+          seriesIndex
+
+          series {
+            id
+            title
+            path
+          }
         }
       }
     }
@@ -150,9 +180,10 @@
       image(width:800)
       path
       timeToRead
-      category {
+      tags {
         id
         title
+        path
       }
     }
 
@@ -162,9 +193,10 @@
       image(width:800)
       path
       timeToRead
-      category {
+      tags {
         id
         title
+        path
       }
     }
 
@@ -289,7 +321,7 @@
 import { formatChineseDate } from '../utils/format'
 import _ from 'lodash'
 import Layout from '@/layouts/Post.vue'
-import RelatedPost from '@/components/RelatedPost.vue'
+import SwiperPost from '@/components/SwiperPost.vue'
 import SeriesPost from '@/components/SeriesPost.vue'
 import Side from '@/components/Side.vue'
 import ShareLinks from '@/components/ShareLinks.vue'
@@ -318,7 +350,7 @@ export default {
   components: {
     Side,
     Layout,
-    RelatedPost,
+    SwiperPost,
     SeriesPost,
     ShareLinks,
   },
@@ -345,13 +377,16 @@ export default {
     },
 
     seriesPostData() {
-      return _.uniqBy(
-        _.flatten(
-          this.$page.post.tags.map(tag =>
-            tag.belongsTo.edges.map(edge => edge),
+      return _.orderBy(
+        _.uniqBy(
+          _.flatten(
+            this.$page.post.series.map(tag =>
+              tag.belongsTo.edges.map(edge => edge),
+            ),
           ),
+          edge => edge.node.title,
         ),
-        edge => edge.node.title,
+        edge => edge.node.seriesIndex,
       )
     },
   },

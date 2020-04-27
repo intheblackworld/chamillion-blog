@@ -1,101 +1,58 @@
 <template>
-  <div class="relate-post-list">
-    <swiper
-      :options="swiperOption"
-      ref="mySwiper"
-    >
-      <swiper-slide
-        v-for="(post, index) in seriesPost"
-        :index="index"
-        :key="post.node.title"
-        class="item"
+  <div class="flex-jb series">
+    <div>
+      <g-link
+        v-for="(post, index) in postList"
+        v-show="index < postList.length / 2"
+        :to="`${post.node.path}`"
+        :key="post.node.id + index"
+        class="series-link flex"
       >
-        <g-link
-          :to="`${post.node.path}`"
-          :key="post.node.id"
-          class="relate-link"
-        >
-          <img
-            :src="post.node.image.src"
-            :class="`item-img`"
-          />
-          <div class="flex">
-            <div class="tag-list flex">
-              <div
-                class="tag"
-                v-for="tag in post.node.tags.slice(0, 2)"
-                :key="tag.title"
-              >{{tag.title}}</div>
-            </div>
-            <div class="date">
-              {{formatChineseDate(post.node.datetime)}}
-            </div>
-          </div>
-          <div class="title">{{post.node.title}}</div>
-        </g-link>
-      </swiper-slide>
-      <div
-        class="swiper-button-prev"
-        slot="button-prev"
+        <div class="label-index flex-c">{{post.node.seriesIndex}}</div>{{post.node.title}}
+      </g-link>
+    </div>
+    <div>
+      <g-link
+        v-for="(post, index) in postList"
+        v-show="index > postList.length / 2"
+        :to="`${post.node.path}`"
+        :key="post.node.id + index"
+        class="series-link flex"
       >
-        <!-- <img
-                src="./arrow-left.png"
-                alt
-              /> -->
-      </div>
-      <div
-        class="swiper-button-next"
-        slot="button-next"
-      >
-        <!-- <img
-                src="./arrow-right.png"
-                alt
-              /> -->
-      </div>
-    </swiper>
+        <div class="label-index flex-c">{{post.node.seriesIndex}}</div>{{post.node.title}}
+      </g-link>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.relate-link {
-  text-decoration: none;
+.series {
+  > div {
+    width: 50%;
+    display: inline-block;
+  }
 }
-.item-img {
+.series-link {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
-  margin-bottom: 8px;
-  // height: 100%;
-}
-
-.title {
-  font-size: 18px;
-  margin-bottom: 20px;
-  line-height: 1.2;
-  letter-spacing: 0.5px;
-  color: #333;
-}
-
-.desc {
-  font-size: 14px;
-  color: #666;
-  font-weight: 400;
-  letter-spacing: 1px;
-  line-height: 1.7;
+  display: flex;
   margin-bottom: 15px;
-  height: 80px;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  line-height: 1.5;
+  text-decoration: none;
+  color: #333;
+
+  &:hover {
+    color: #880e28;
+  }
 }
 
-.date {
-  font-weight: 300;
-  color: #666;
-  font-size: 12px;
-  height: 24px;
-  line-height: 24px;
-  letter-spacing: 0.5px;
-  margin-left: 5px;
+.label-index {
+  width: 20px;
+  height: 20px;
+  border-radius: 25px;
+  background-color: #880e28;
+  color: #fff;
+  margin-right: 10px;
+  font-size: 13px;
 }
 
 /* 螢幕尺寸標準 */
@@ -119,16 +76,20 @@ import 'swiper/css/swiper.css'
 
 export default {
   mixins: [slider],
-  props: ['seriesPost'],
+  props: ['postList'],
   name: 'seriesPost',
+
+  created() {
+    // console.log(this.postList)
+  },
 
   data() {
     return {
       isMobile,
       isTablet,
       swiperOption: {
-        slidesPerView: isMobile ? 1 : 2,
-        spaceBetween: isTablet ? 20 : 30,
+        slidesPerView: isMobile ? 1 : 4,
+        spaceBetween: isTablet ? 20 : 10,
         slidesPerColumn: isMobile ? 1 : 1,
         allowSlidePrev: isMobile ? true : true,
         allowSlideNext: isMobile ? true : true,

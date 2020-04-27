@@ -35,6 +35,16 @@ body {
   font-weight: bold;
   letter-spacing: 0.5px;
   margin-bottom: 15px;
+
+  &.link {
+    cursor: pointer;
+    color: #880e28;
+    text-decoration: none;
+
+    &:hover {
+      color: rgb(240, 162, 16);
+    }
+  }
 }
 
 .tag-list {

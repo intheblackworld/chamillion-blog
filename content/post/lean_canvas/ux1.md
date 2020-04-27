@@ -8,9 +8,9 @@ description: "1. 市場力量
 datetime: "2020-04-17 20:00:00"
 image: ../images/vue.jpg
 tags: 美股投資, 工作效率, 精實創業
-category: starup
 extends: 20190331  創業目前學到什麼？
-series: 從零到一的PMF, 1
+series: 工程師創業
+seriesIndex: 1
 ---
 
 ### 市場調查階段

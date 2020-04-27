@@ -20,7 +20,7 @@
       </div>
 
       
-      <!-- <div class="pagination flex justify-center mb-8">
+      <div class="pagination flex justify-center mb-8">
         <Pagination
           :baseUrl="$page.tag.path"
           :currentPage="$page.tag.belongsTo.pageInfo.currentPage"
@@ -28,7 +28,7 @@
           :maxVisibleButtons="5"
           v-if="$page.tag.belongsTo.pageInfo.totalPages > 1"
         />
-      </div> -->
+      </div>
     </div>
   </Layout>
 </template>
@@ -39,7 +39,7 @@
     tag(id: $id) {
       title
       path
-      belongsTo(perPage: 5, page: $page) @paginate {
+      belongsTo(perPage: 1, page: $page) @paginate {
         totalCount
         pageInfo {
           totalPages
@@ -55,7 +55,7 @@
               path
               timeToRead
               datetime
-              category {
+              tags {
                 id
                 title
               }
@@ -68,12 +68,12 @@
 </page-query>
 
 <script>
-import PostList from "~/components/PostList.vue";
-// import Pagination from "~/components/Pagination.vue";
+import PostList from "~/components/PostList.vue"
+import Pagination from "~/components/Pagination.vue"
 
 export default {
   components: {
-    // Pagination,
+    Pagination,
     PostList
   },
   computed: {
@@ -92,7 +92,7 @@ export default {
   },
 
   created() {
-    console.log(this.$page.tag.title)
+    // console.log(this.$page.tag.title)
   }
 };
 </script>

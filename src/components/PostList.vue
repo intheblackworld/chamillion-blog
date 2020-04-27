@@ -7,10 +7,11 @@
           <g-link :to="tag.path" class="tag" v-for="tag in post.tags" :key="tag.title">{{tag.title}}</g-link>
         </div>
         <div class="date">
-          {{formatChineseDateTime(post.datetime)}}
+          {{formatChineseDate(post.datetime)}}
         </div>
       </div>
-      <g-link class="title" :to="post.path">{{post.title}}</g-link>
+      
+      <g-link class="title" :to="post.path">{{post.series ? `${post.series[0].title}系列${post.seriesIndex} - ` : ''}}{{post.title}}</g-link>
       <div class="desc" v-html="`${post.description}...`"></div>
       <g-link :to="post.path" class="read">繼續閱讀</g-link>
       <!-- <b>{{post.timeToRead}} min read</b> &nbsp; -->
@@ -21,18 +22,18 @@
 
 <script>
 import moment from 'moment'
-import { formatChineseDateTime } from '../utils/format'
+import { formatChineseDate } from '../utils/format'
 
 export default {
   name: 'postlist',
   props: ["post"],
   data() {
     return {
-      formatChineseDateTime
+      formatChineseDate
     }
   },
   created() {
-    console.log(this.post)
+    // console.log(this.post)
   },
 
   methods: {

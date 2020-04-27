@@ -29,14 +29,14 @@ module.exports = {
             create: true,
             route: '/tags/:id',
           },
-          category: {
-            typeName: 'Category',
-            route: '/category/:id',
-            create: true,
-          },
+          // category: {
+          //   typeName: 'Category',
+          //   route: '/category/:id',
+          //   create: true,
+          // },
           series: {
             typeName: 'Series',
-            // route: '/series/:title',
+            route: '/series/:id',
             create: true,
           }
         }
@@ -67,10 +67,10 @@ module.exports = {
   ],
 
   template: {
-    Category: [{
-      path: '/category/:title', // 根據路徑對應 template
-      component: '~/templates/Category.vue'
-    }],
+    // Category: [{
+    //   path: '/category/:title', // 根據路徑對應 template
+    //   component: '~/templates/Category.vue'
+    // }],
     Tag: [{
       path: '/tags/:title',
       component: '~/templates/Tag.vue'

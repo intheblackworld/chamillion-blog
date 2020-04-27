@@ -1,26 +1,25 @@
 <template>
   <Layout>
-    <div class="container sm:pxi-0 mx-auto overflow-x-hidden pt-24">
+    <div class="container">
       <div class="mx-4 sm:mx-0">
-        <h1 class="pb-0 mb-0 text-5xl font-medium">{{ $page.tag.title }}</h1>
+        <div class="block-title">{{ $page.series.title }}系列</div>
         <p class="text-gray-700 text-xl">
-          A collection of
+          共有
           <span
             class="self-center"
-          >{{ $page.tag.belongsTo.totalCount }} {{ postLabel }}</span>
+          >{{ $page.series.belongsTo.totalCount }}篇文章</span>
         </p>
       </div>
 
-      <div class="pt-8 border-b"></div>
-
-      <!-- <div class="flex flex-wrap pt-8 pb-8 mx-4 sm:-mx-4">
+      <div class="flex wrap">
         <PostList
-          v-for="edge in $page.tag.belongsTo.edges"
+          v-for="edge in $page.series.belongsTo.edges"
           :key="edge.node.id"
-          :record="edge.node"
+          :post="edge.node"
         />
-      </div> -->
+      </div>
 
+      
       <!-- <div class="pagination flex justify-center mb-8">
         <Pagination
           :baseUrl="$page.tag.path"
@@ -35,11 +34,12 @@
 </template>
 
 <page-query>
+  # ID! 表示这个字段是非空的，GraphQL 服务保证当你查询这个字段后总会给你返回一个值。在类型语言里面，我们用一个感叹号来表示这个特性。
   query($id: ID!, $page:Int) {
-    tag(id: $id) {
+    series(id: $id) {
       title
       path
-      belongsTo(perPage: 5, page: $page) @paginate {
+      belongsTo(perPage: 5, page: $page, sortBy: "seriesIndex", order: ASC) @paginate {
         totalCount
         pageInfo {
           totalPages
@@ -49,12 +49,18 @@
           node {
             ... on Post {
               title
+              description
               excerpt
-              # image(width:800)
+              image(width:800)
               path
               timeToRead
               datetime
-              category {
+              seriesIndex
+              tags {
+                id
+                title
+              }
+              series {
                 id
                 title
               }
@@ -67,27 +73,38 @@
 </page-query>
 
 <script>
-// import PostList from "~/components/PostList.vue";
+import PostList from "~/components/PostList.vue";
 // import Pagination from "~/components/Pagination.vue";
 
 export default {
   components: {
     // Pagination,
-    // PostList
+    PostList
   },
   computed: {
-    postLabel: function() {
-      var pluralize = require("pluralize");
-      return pluralize("post", this.$page.tag.belongsTo.totalCount);
-    }
+    // postLabel: function() {
+    //   var pluralize = require("pluralize");
+    //   return pluralize("post", this.$page.tag.belongsTo.totalCount);
+    // }
   },
   metaInfo() {
     return {
       title: this.$page.series.title,
       meta: [
-        { name: 'title', content: this.$page.series.title },
+        { name: 'title', content: this.$page.tag.title },
       ]
     };
+  },
+
+  created() {
+    // console.log(this.$page.tag.title)
   }
 };
 </script>
+
+
+<style lang="scss" scoped>
+.title {
+  font-size: 32px;
+}
+</style>

@@ -1,6 +1,6 @@
 ### 功能面
 第一次黑客松
-- [x] 中文路徑問題 `/category/:title -> /category/:id`
+- [x] 中文路徑問題 `/tags/:title -> /tags/:id`
 - [x] 最新文章
 - [x] Tag 頁 分類頁
 - [x] Meta by page

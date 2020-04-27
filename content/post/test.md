@@ -4,8 +4,8 @@ description: " 等待成效展示需要有耐心"
 datetime: "2020-04-13 20:00:00"
 image: ./images/test.jpg
 tags: 精實創業
-category: 工程師創業
-series: 工程師創業, 3
+series: 工程師創業
+seriesIndex: 3
 ---
 
 1. 你得做超出自己預想要多更多的努力才能達到你預想回報的1/10或者沒有回報

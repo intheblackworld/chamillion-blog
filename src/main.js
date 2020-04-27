@@ -9,7 +9,7 @@ import './assets/style/global.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBars, faTimes, faArrowUp } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faTimes, faArrowUp, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import {
   faFacebookMessenger,
   faFacebookF,
@@ -17,7 +17,7 @@ import {
   faTelegramPlane
 } from '@fortawesome/free-brands-svg-icons'
 import '@fortawesome/fontawesome-svg-core/styles.css'
-library.add(faBars, faTimes, faArrowUp, faFacebookMessenger, faFacebookF, faLine, faTelegramPlane)
+library.add(faBars, faTimes, faArrowUp, faArrowRight, faFacebookMessenger, faFacebookF, faLine, faTelegramPlane)
 
 import VueScrollTo from 'vue-scrollto'
 

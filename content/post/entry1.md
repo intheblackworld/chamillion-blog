@@ -4,8 +4,8 @@ description: " 等待成效展示需要有耐心"
 datetime: "2020-02-13 20:00:00"
 image: ./images/entry1.jpg
 tags: 精實創業
-category: 工程師創業
-series: 工程師創業, 1
+series: 美股投資
+seriesIndex: 1
 ---
 
 1. 等待成效展示需要有耐心

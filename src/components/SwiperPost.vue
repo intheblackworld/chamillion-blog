@@ -5,7 +5,7 @@
       ref="mySwiper"
     >
       <swiper-slide
-        v-for="(post, index) in relatedPost"
+        v-for="(post, index) in postList"
         :index="index"
         :key="post.node.title"
         class="item"
@@ -31,7 +31,7 @@
               {{formatChineseDate(post.node.datetime)}}
             </div>
           </div>
-          <div class="title">{{post.node.title}}</div>
+          <div class="title">{{post.node.series ? `${post.node.series[0].title}系列${post.node.seriesIndex} - ` : ''}}{{post.node.title}}</div>
         </g-link>
       </swiper-slide>
       <div
@@ -119,7 +119,7 @@ import 'swiper/css/swiper.css'
 
 export default {
   mixins: [slider],
-  props: ['relatedPost'],
+  props: ['postList'],
   data() {
     return {
       isMobile,
