@@ -42,11 +42,11 @@
             to="/tags/精實創業"
             class="nav-item"
           >精實創業</g-link>
-          <g-link
+          <!-- <g-link
             tag="li"
             to="/tags/一頁商店"
             class="nav-item"
-          >一頁商店</g-link>
+          >一頁商店</g-link> -->
           <g-link
             tag="li"
             to="/tags/工作效率"
