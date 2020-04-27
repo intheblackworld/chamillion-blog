@@ -10,8 +10,6 @@
         :post="edge.node"
       />
     </div>
-    <!-- @TODO 系列文章 -->
-    <!-- 展示兩篇，輪播 -->
     <div
       class="mt-40"
       v-show="edge.node.belongsTo.edges.length > 2"
@@ -108,7 +106,6 @@ query {
       }
     }
   }
-  # @TODO 系列文章
   allSeries {
     totalCount
     edges {

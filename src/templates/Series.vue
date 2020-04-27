@@ -20,15 +20,13 @@
       </div>
 
       
-      <!-- <div class="pagination flex justify-center mb-8">
-        <Pagination
-          :baseUrl="$page.tag.path"
-          :currentPage="$page.tag.belongsTo.pageInfo.currentPage"
-          :totalPages="$page.tag.belongsTo.pageInfo.totalPages"
-          :maxVisibleButtons="5"
-          v-if="$page.tag.belongsTo.pageInfo.totalPages > 1"
-        />
-      </div> -->
+      <Pagination
+        :baseUrl="$page.series.path"
+        :currentPage="$page.series.belongsTo.pageInfo.currentPage"
+        :totalPages="$page.series.belongsTo.pageInfo.totalPages"
+        :maxVisibleButtons="5"
+        v-if="$page.series.belongsTo.pageInfo.totalPages > 1"
+      />
     </div>
   </Layout>
 </template>
@@ -91,7 +89,7 @@ export default {
     return {
       title: this.$page.series.title,
       meta: [
-        { name: 'title', content: this.$page.tag.title },
+        { name: 'title', content: this.$page.series.title },
       ]
     };
   },

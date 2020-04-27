@@ -32,26 +32,26 @@
     <div :class="`nav ${isFixHeader ? 'fixheader' : ''}`">
       <div class="nav-container">
         <ul :class="`nav-list ${isShowMenu ? 'show' : ''}`">
-          <router-link
+          <g-link
             tag="li"
             to="/tags/美股投資"
             class="nav-item"
-          >美股投資</router-link>
-          <router-link
+          >美股投資</g-link>
+          <g-link
             tag="li"
             to="/tags/精實創業"
             class="nav-item"
-          >精實創業</router-link>
-          <router-link
+          >精實創業</g-link>
+          <g-link
             tag="li"
             to="/tags/一頁商店"
             class="nav-item"
-          >一頁商店</router-link>
-          <router-link
+          >一頁商店</g-link>
+          <g-link
             tag="li"
             to="/tags/工作效率"
             class="nav-item"
-          >工作效率</router-link>
+          >工作效率</g-link>
         </ul>
       </div>
     </div>

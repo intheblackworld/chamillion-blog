@@ -1,9 +1,9 @@
 <template>
   <div class="flex-jb series">
-    <div>
+    <div v-if="!isMobile">
       <g-link
         v-for="(post, index) in postList"
-        v-show="index < postList.length / 2"
+        v-show="index < (postList.length / 2)"
         :to="`${post.node.path}`"
         :key="post.node.id + index"
         class="series-link flex"
@@ -11,10 +11,20 @@
         <div class="label-index flex-c">{{post.node.seriesIndex}}</div>{{post.node.title}}
       </g-link>
     </div>
-    <div>
+    <div v-if="!isMobile">
       <g-link
         v-for="(post, index) in postList"
         v-show="index > postList.length / 2"
+        :to="`${post.node.path}`"
+        :key="post.node.id + index"
+        class="series-link flex"
+      >
+        <div class="label-index flex-c">{{post.node.seriesIndex}}</div>{{post.node.title}}
+      </g-link>
+    </div>
+    <div v-if="isMobile">
+      <g-link
+        v-for="(post, index) in postList"
         :to="`${post.node.path}`"
         :key="post.node.id + index"
         class="series-link flex"
@@ -38,10 +48,16 @@
   margin-bottom: 15px;
   line-height: 1.5;
   text-decoration: none;
+  padding: 5px;
   color: #333;
 
   &:hover {
     color: #880e28;
+  }
+
+  &.active--exact {
+    background-color: #999;
+    color: #fff;
   }
 }
 
@@ -63,6 +79,12 @@
 /* 螢幕尺寸標準 */
 /* 手機尺寸 */
 @media screen and (max-width: 767px) {
+  .series {
+    > div {
+      width: 100%;
+      display: inline-block;
+    }
+  }
 }
 </style>
 
@@ -76,7 +98,9 @@ import 'swiper/css/swiper.css'
 
 export default {
   mixins: [slider],
-  props: ['postList'],
+  props: {
+    postList: Array,
+  },
   name: 'seriesPost',
 
   created() {

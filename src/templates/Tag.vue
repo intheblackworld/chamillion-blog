@@ -5,9 +5,7 @@
         <div class="block-title">{{ $page.tag.title }}相關</div>
         <p class="text-gray-700 text-xl">
           共有
-          <span
-            class="self-center"
-          >{{ $page.tag.belongsTo.totalCount }}篇文章</span>
+          <span class="self-center">{{ $page.tag.belongsTo.totalCount }}篇文章</span>
         </p>
       </div>
 
@@ -19,16 +17,13 @@
         />
       </div>
 
-      
-      <div class="pagination flex justify-center mb-8">
-        <Pagination
-          :baseUrl="$page.tag.path"
-          :currentPage="$page.tag.belongsTo.pageInfo.currentPage"
-          :totalPages="$page.tag.belongsTo.pageInfo.totalPages"
-          :maxVisibleButtons="5"
-          v-if="$page.tag.belongsTo.pageInfo.totalPages > 1"
-        />
-      </div>
+      <Pagination
+        :baseUrl="$page.tag.path"
+        :currentPage="$page.tag.belongsTo.pageInfo.currentPage"
+        :totalPages="$page.tag.belongsTo.pageInfo.totalPages"
+        :maxVisibleButtons="5"
+        v-if="$page.tag.belongsTo.pageInfo.totalPages > 1"
+      />
     </div>
   </Layout>
 </template>
@@ -39,7 +34,7 @@
     tag(id: $id) {
       title
       path
-      belongsTo(perPage: 1, page: $page) @paginate {
+      belongsTo(perPage: 5, page: $page) @paginate {
         totalCount
         pageInfo {
           totalPages
@@ -68,13 +63,13 @@
 </page-query>
 
 <script>
-import PostList from "~/components/PostList.vue"
-import Pagination from "~/components/Pagination.vue"
+import PostList from '~/components/PostList.vue'
+import Pagination from '~/components/Pagination.vue'
 
 export default {
   components: {
     Pagination,
-    PostList
+    PostList,
   },
   computed: {
     // postLabel: function() {
@@ -85,16 +80,14 @@ export default {
   metaInfo() {
     return {
       title: this.$page.tag.title,
-      meta: [
-        { name: 'title', content: this.$page.tag.title },
-      ]
-    };
+      meta: [{ name: 'title', content: this.$page.tag.title }],
+    }
   },
 
   created() {
     // console.log(this.$page.tag.title)
-  }
-};
+  },
+}
 </script>
 
 

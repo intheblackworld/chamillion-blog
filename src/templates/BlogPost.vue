@@ -32,7 +32,10 @@
             v-html="$page.post.content"
             class="desc"
           />
-          <div class="block-title">
+          <div
+            class="block-title"
+            v-if="extendPosts.length > 0"
+          >
             延伸閱讀
           </div>
           <div class="extend-post-list">
@@ -50,12 +53,34 @@
             分享這篇文章
           </div>
           <ShareLinks :post="$page.post" />
+          <div
+            class="pages flex-ac flex-jb mobile-wrap"
+            v-if="!(seriesPostData.length > 0)"
+          >
+            <!-- 這裡因為排序的關係，是反向的 -->
+            <g-link
+              v-if="$page.next"
+              :to="$page.next.path"
+              class="prev-btn"
+            >
+              <font-awesome :icon="['fa', 'arrow-left']" />
+              {{$page.next.title}}
+            </g-link>
+            <g-link
+              v-if="$page.previous"
+              :to="$page.previous.path"
+              class="next-btn"
+            >
+              {{$page.previous.title}}
+              <font-awesome :icon="['fa', 'arrow-right']" />
+            </g-link>
+          </div>
         </div>
 
         <div class="content">
           <div
             class="block-title"
-            v-if="seriesPostData"
+            v-if="seriesPostData.length > 0"
           >
             {{$page.post.series[0].title}} 系列文章
           </div>
@@ -180,11 +205,11 @@
       image(width:800)
       path
       timeToRead
-      tags {
-        id
-        title
-        path
-      }
+      # tags {
+      #   id
+      #   title
+      #   path
+      # }
     }
 
     next: post(id: $nextElement) {
@@ -193,17 +218,16 @@
       image(width:800)
       path
       timeToRead
-      tags {
-        id
-        title
-        path
-      }
+      # tags {
+      #   id
+      #   title
+      #   path
+      # }
     }
 
     tag(id: $id) {
       title
       path
-      
     }  
   }
 </page-query>
@@ -282,6 +306,23 @@
   }
 }
 
+.pages {
+  margin-bottom: 20px;
+  a {
+    color: #666;
+    font-size: 18px;
+    text-decoration: none;
+  }
+
+  svg {
+    margin: 0 5px;
+  }
+
+  a:hover {
+    color: #ce8703;
+  }
+}
+
 /* 螢幕尺寸標準 */
 /* 平板尺寸 */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -313,6 +354,17 @@
   .left {
     width: 100%;
     padding-right: 0;
+  }
+
+  .prev-btn {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 15px;
+  }
+
+  .next-btn {
+    width: 100%;
+    text-align: right;
   }
 }
 </style>

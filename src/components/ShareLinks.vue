@@ -57,6 +57,21 @@
     }
   }
 }
+
+/* 螢幕尺寸標準 */
+/* 手機尺寸 */
+@media screen and (max-width: 767px) {
+  .share-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .btn {
+    width: 32%;
+    margin-right: 0;
+  }
+}
 </style>
 
 <script>

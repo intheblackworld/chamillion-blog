@@ -1,19 +1,21 @@
 <template>
   <div class="layout">
     <Header />
-    <transition
-      name="fade"
-      appear
-    >
-      <div class="container">
-        <div class="flex wrap">
+
+    <div class="container">
+      <div class="flex wrap">
+        <transition
+          name="fade"
+          appear
+        >
           <div class="block">
             <slot />
           </div>
-          <Side />
-        </div>
+        </transition>
+        <Side />
       </div>
-    </transition>
+    </div>
+
     <div class="footer"></div>
   </div>
 </template>
@@ -30,7 +32,6 @@
 /* 螢幕尺寸標準 */
 /* 平板尺寸 */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-
 }
 
 /* 螢幕尺寸標準 */

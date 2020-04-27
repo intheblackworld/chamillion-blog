@@ -37,7 +37,7 @@ module.exports = function (api) {
     const {
       data
     } = await graphql(`{
-      allPost {
+      allPost(sortBy: "datetime") {
         edges {
           previous {
             id
