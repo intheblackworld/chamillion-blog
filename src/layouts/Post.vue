@@ -35,7 +35,6 @@ query {
 
 <script>
 import Header from '@/components/Header'
-import { isMobile } from '@/utils/device'
 export default {
   components: {
     Header,
@@ -43,7 +42,6 @@ export default {
 
   data() {
     return {
-      isMobile
     }
   },
   created() {

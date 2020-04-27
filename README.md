@@ -29,7 +29,7 @@
 第二次黑客松
 - [ ] 部署 aws nginx mongoatlas
 - [ ] 文章閱讀數
-- [ ] 訂閱
+- [ ] 訂閱：FB, IG, Email, Youtube, Podcast
 - [ ] Fb 像素
 - [ ] 發文管道
 - [ ] 打賞

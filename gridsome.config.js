@@ -7,7 +7,10 @@
 module.exports = {
   siteName: 'Mr.變色龍 | 適應環境 - 登峰造極 | 通往財富的自由之路', // meta title
   siteDescription: '', // meta description
-  siteUrl: 'chamillioner.com',
+  // siteUrl: 'chamillioner.com',
+  // github page
+  siteUrl: 'https://intheblackworld.github.io',
+  pathPrefix: '/chamillion-blog',
   plugins: [
     {
       use: 'gridsome-plugin-gtm',

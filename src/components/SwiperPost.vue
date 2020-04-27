@@ -125,11 +125,11 @@ export default {
       isMobile,
       isTablet,
       swiperOption: {
-        slidesPerView: isMobile ? 1 : 2,
-        spaceBetween: isTablet ? 20 : 30,
-        slidesPerColumn: isMobile ? 1 : 1,
-        allowSlidePrev: isMobile ? true : true,
-        allowSlideNext: isMobile ? true : true,
+        slidesPerView: 1,
+        spaceBetween: 20,
+        slidesPerColumn: 1,
+        allowSlidePrev: true,
+        allowSlideNext: true,
         // centeredSlides: true,
         // autoplay: {
         //   delay: 5000,
@@ -148,6 +148,11 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+  },
+
+  mounted() {
+    this.$refs.mySwiper.$swiper.params.slidesPerView = this.isMobile(window) ? 1 : 2
+    this.$refs['mySwiper'].$swiper.update()
   },
 
   methods: {

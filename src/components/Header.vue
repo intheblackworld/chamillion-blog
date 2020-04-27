@@ -253,7 +253,7 @@ export default {
     onScroll() {
       const scrollTop =
         document.documentElement.scrollTop || document.body.scrollTop
-      if (!this.isMobile) {
+      if (!this.isMobile(window)) {
         if (scrollTop >= window.innerHeight * 0.2) {
           this.isFixHeader = true
         } else {

@@ -92,12 +92,7 @@
 import { isMobile, isTablet } from '../utils/device'
 import { formatChineseDate } from '../utils/format'
 
-import slider from '@/mixins/slider.js'
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-import 'swiper/css/swiper.css'
-
 export default {
-  mixins: [slider],
   props: {
     postList: Array,
   },
@@ -111,44 +106,15 @@ export default {
     return {
       isMobile,
       isTablet,
-      swiperOption: {
-        slidesPerView: isMobile ? 1 : 4,
-        spaceBetween: isTablet ? 20 : 10,
-        slidesPerColumn: isMobile ? 1 : 1,
-        allowSlidePrev: isMobile ? true : true,
-        allowSlideNext: isMobile ? true : true,
-        // centeredSlides: true,
-        // autoplay: {
-        //   delay: 5000,
-        //   disableOnInteraction: true,
-        // },
-        loop: true,
-        // effect: 'fade',
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-      },
     }
   },
 
-  components: {
-    Swiper,
-    SwiperSlide,
+  mounted() {
+    this.isMobile(window)
   },
 
   methods: {
     formatChineseDate,
-    // slideChanged(e) {
-    //   const swiper = this.$refs.mySwiper.swiper
-    //   if (swiper.isEnd) {
-    //     this.slideIndex = 0
-    //   } else if (swiper.isBeginning) {
-    //     this.slideIndex = swiper.slides.length - 3
-    //   } else {
-    //     this.slideIndex = swiper.activeIndex - 1
-    //   }
-    // },
   },
 }
 </script>

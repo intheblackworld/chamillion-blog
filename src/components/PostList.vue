@@ -124,6 +124,7 @@ export default {
 @media screen and (max-width: 767px) {
   .post-cover {
     width: 100%;
+    height: auto;
   }
   .content {
     width: 100%;
