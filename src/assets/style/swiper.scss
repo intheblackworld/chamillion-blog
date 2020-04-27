@@ -1,0 +1,14 @@
+.swiper-button-prev,
+.swiper-button-next {
+  color: #fff !important;
+  outline: none !important;
+  top: 36% !important;
+  &:after {
+    font-size: 30px !important;
+  }
+}
+
+/* 螢幕尺寸標準 */
+/* 手機尺寸 */
+@media screen and (max-width: 767px) {
+}
