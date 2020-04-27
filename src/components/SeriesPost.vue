@@ -1,6 +1,6 @@
 <template>
   <div class="flex-jb series">
-    <div v-if="!isMobile">
+    <div v-if="!isMobileResult">
       <g-link
         v-for="(post, index) in postList"
         v-show="index < (postList.length / 2)"
@@ -11,7 +11,7 @@
         <div class="label-index flex-c">{{post.node.seriesIndex}}</div>{{post.node.title}}
       </g-link>
     </div>
-    <div v-if="!isMobile">
+    <div v-if="!isMobileResult">
       <g-link
         v-for="(post, index) in postList"
         v-show="index > postList.length / 2"
@@ -22,7 +22,7 @@
         <div class="label-index flex-c">{{post.node.seriesIndex}}</div>{{post.node.title}}
       </g-link>
     </div>
-    <div v-if="isMobile">
+    <div v-if="isMobileResult">
       <g-link
         v-for="(post, index) in postList"
         :to="`${post.node.path}`"
@@ -106,11 +106,12 @@ export default {
     return {
       isMobile,
       isTablet,
+      isMobileResult: false
     }
   },
 
   mounted() {
-    this.isMobile(window)
+    this.isMobileResult = this.isMobile(window)
   },
 
   methods: {
