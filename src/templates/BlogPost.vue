@@ -392,7 +392,7 @@ export default {
         { name: 'title', content: this.$page.post.title },
         { name: 'description', content: this.$page.post.description },
         { property: 'og:title', content: this.$page.post.title },
-        { property: 'og:url', content: 'https://chamillioner.com' + this.$page.post },
+        { property: 'og:url', content: 'https://chamillioner.com' + this.$page.post.node.path },
         { property: 'og:type', content: 'website' },
         { property: 'og:description', content: this.$page.post.description },
         { property: 'og:image', content: 'https://chamillioner.com' + this.$page.post.image.src },
