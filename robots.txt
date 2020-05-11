@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /search
+Disallow: /admin
+Disallow: /user
+Crawl-delay: 2
+Clean-param: ref /content/
+Sitemap: https://chamillioner.com/sitemap.xml
+Host: https://chamillioner.com
