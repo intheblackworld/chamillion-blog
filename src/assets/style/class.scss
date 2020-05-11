@@ -59,12 +59,12 @@
   align-items: center;
 }
 
-.flex-ab {
+.flex-ae {
   display: flex;
   align-items: flex-end;
 }
 
-.flex-at {
+.flex-as {
   display: flex;
   align-items: flex-start;
 }
@@ -79,7 +79,12 @@
   justify-content: space-around;
 }
 
-.flex-jr {
+.flex-js {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.flex-je {
   display: flex;
   justify-content: flex-end;
 }

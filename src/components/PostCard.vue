@@ -2,7 +2,7 @@
   <div class="post flex-c wrap">
     <img :src="post.image.src" alt="" class="post-cover">
     <div class="content">
-      <div class="flex-at flex-js">
+      <div class="flex-as flex-js">
         <div class="tag-list flex-c">
           <g-link :to="tag.path" class="tag" v-for="tag in post.tags" :key="tag.title">{{tag.title}}</g-link>
         </div>

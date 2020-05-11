@@ -2,17 +2,17 @@
   <div class="share-content flex">
     <g-link
       class="btn fb flex-c"
-      :to="`https://www.facebook.com/sharer/sharer.php?u=https://chamillioner.com${post.path}`"
+      :to="`https://www.facebook.com/sharer/sharer.php?u=${$page.metadata.siteUrl}${post.path}`"
     >
       <font-awesome :icon="['fab', 'facebook-f']" />Facebook</g-link>
     <g-link
       class="btn line flex-c"
-      :to="`https://social-plugins.line.me/lineit/share?url=https://chamillioner.com${post.path}`"
+      :to="`https://social-plugins.line.me/lineit/share?url=${$page.metadata.siteUrl}${post.path}`"
     >
       <font-awesome :icon="['fab', 'line']" />Line</g-link>
     <g-link
       class="btn telegram flex-c"
-      :to="`https://t.me/share/url?url=https://chamillioner.com${post.path}&text=${post.title}`"
+      :to="`https://t.me/share/url?url=${$page.metadata.siteUrl}${post.path}&text=${post.title}`"
     >
       <font-awesome :icon="['fab', 'telegram-plane']" />Telegram</g-link>
   </div>
@@ -78,5 +78,10 @@
 export default {
   name: 'share-links',
   props: ['post'],
+  data() {
+    return {
+      process,
+    }
+  }
 }
 </script>

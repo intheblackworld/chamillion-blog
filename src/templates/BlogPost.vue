@@ -27,11 +27,18 @@
     <!-- <g-link to="/" class="link">  &larr; Go Back</g-link> -->
     <div class="container flex wrap">
       <div class="left">
-        <div class="content">
+        <div class="content markdown">
           <div
             v-html="$page.post.content"
             class="desc"
           />
+          <iframe
+            data-v-b66e9a5a=""
+            :src="`https://button.like.co/in/embed/chamillion/button?referrer=${$page.metadata.siteUrl}${$page.post.path}`"
+            frameborder="0"
+            class="lc-margin-top-64 lc-margin-bottom-32 lc-mobile"
+          >
+          </iframe>
           <div
             class="block-title"
             v-if="extendPosts.length > 0"
@@ -101,6 +108,9 @@
 
 <page-query>
   query($id: ID!, $previousElement: ID!, $nextElement: ID!) {
+    metadata {
+      siteUrl
+    }
     post(id: $id) {
       title
       description
@@ -323,6 +333,10 @@
   }
 }
 
+.container {
+  margin-top: 0;
+}
+
 /* 螢幕尺寸標準 */
 /* 平板尺寸 */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -333,7 +347,7 @@
 @media screen and (max-width: 767px) {
   .content {
     width: 100%;
-    padding: 0 5%;
+    padding: 0 7.5%;
   }
 
   .cover {
@@ -377,6 +391,7 @@ import SwiperPost from '@/components/SwiperPost.vue'
 import SeriesPost from '@/components/SeriesPost.vue'
 import Side from '@/components/Side.vue'
 import ShareLinks from '@/components/ShareLinks.vue'
+import axios from 'axios'
 
 export default {
   name: 'blogPost',
@@ -392,10 +407,16 @@ export default {
         { name: 'title', content: this.$page.post.title },
         { name: 'description', content: this.$page.post.description },
         { property: 'og:title', content: this.$page.post.title },
-        { property: 'og:url', content: 'https://chamillioner.com' + this.$page.post.path },
+        {
+          property: 'og:url',
+          content: 'https://chamillioner.com' + this.$page.post.path,
+        },
         { property: 'og:type', content: 'website' },
         { property: 'og:description', content: this.$page.post.description },
-        { property: 'og:image', content: 'https://chamillioner.com' + this.$page.post.image.src },
+        {
+          property: 'og:image',
+          content: 'https://chamillioner.com' + this.$page.post.image.src,
+        },
       ],
     }
   },
@@ -444,8 +465,8 @@ export default {
     },
   },
 
-  created() {
-    // console.log(this.$page.post)
+  mounted() {
+    console.log(this.$page.metadata)
   },
 
   methods: {
