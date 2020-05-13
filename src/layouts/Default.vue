@@ -6,6 +6,8 @@
       attribution=setup_tool
       page_id="103647181351954"
       theme_color="#333333"
+      greeting_dialog_delay="3"
+      greeting_dialog_display="fade"
       logged_in_greeting="嗨，很高興能跟你交流"
       logged_out_greeting="嗨，很高興能跟你交流"
     >

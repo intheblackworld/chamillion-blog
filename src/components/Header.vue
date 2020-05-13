@@ -153,7 +153,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50px;
-  background-color: #303841;
+  background-color: rgba(48, 56, 65, .5);
   cursor: pointer;
 }
 

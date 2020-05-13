@@ -34,7 +34,7 @@ module.exports = function (api) {
     // 在這裏做 延伸閱讀 
     // 參考
     // https://danilowoz.com/Advanced-blog-system-in-Gatsby/#-next-and-prev-post
-    const {
+    let {
       data
     } = await graphql(`{
       allPost(sortBy: "datetime") {
@@ -52,7 +52,10 @@ module.exports = function (api) {
         }
       }
     }
-    `);
+    `)
+    if (!data) {
+      data = {allPost: { edges: []}}
+    }
     data.allPost.edges.forEach(function (element) {
       // 根據每一篇文章，給訂他的path以及用以產生頁面的樣板以及參數
       
