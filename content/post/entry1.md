@@ -4,7 +4,7 @@ description: " 等待成效展示需要有耐心"
 datetime: "2020-02-13 20:00:00"
 image: ./images/entry1.jpg
 tags: 精實創業
-series: 美股投資
+series: 微創破10
 seriesIndex: 1
 ---
 

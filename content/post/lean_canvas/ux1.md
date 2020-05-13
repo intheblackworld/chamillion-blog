@@ -7,13 +7,17 @@ description: "1. 市場力量
 	5. 收益吸引：TA 真正願意付錢的元因2. 產業力量(運用對手來分析市場，目標客群，顧客買單的原因)"
 datetime: "2020-04-17 20:00:00"
 image: ../images/vue.jpg
-tags: 美股投資, 工作效率, 精實創業
+tags: 微創破10, 工作效率, 精實創業
 extends: 20190331  創業目前學到什麼？
 series: 工程師創業
 seriesIndex: 1
 ---
 
-### 市場調查階段
+<!-- ### 市場調查階段 -->
+[文內連結](/content/post/entry1)
+
+https://www.youtube.com/embed/jMe6Y8GDVEI
+
 1. 市場力量
 	1. 市場區隔：找出有價值的TA
 	2. 市場議題：影響 TA 的議題

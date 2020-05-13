@@ -34,9 +34,9 @@
         <ul :class="`nav-list ${isShowMenu ? 'show' : ''}`">
           <g-link
             tag="li"
-            to="/tags/美股投資"
+            to="/tags/微創破10"
             class="nav-item"
-          >美股投資</g-link>
+          >微創破10</g-link>
           <g-link
             tag="li"
             to="/tags/精實創業"
@@ -148,8 +148,8 @@
 .arrow {
   color: #fff;
   position: fixed;
-  bottom: 10px;
-  right: 10px;
+  bottom: 100px;
+  right: 30px;
   width: 50px;
   height: 50px;
   border-radius: 50px;

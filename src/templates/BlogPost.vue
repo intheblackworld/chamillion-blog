@@ -32,6 +32,8 @@
             v-html="$page.post.content"
             class="desc"
           />
+          
+          <!-- 打賞 -->
           <iframe
             data-v-b66e9a5a=""
             :src="`https://button.like.co/in/embed/chamillion/button?referrer=${$page.metadata.siteUrl}${$page.post.path}`"
@@ -39,6 +41,8 @@
             class="lc-margin-top-64 lc-margin-bottom-32 lc-mobile"
           >
           </iframe>
+          
+          <!-- 延伸閱讀 -->
           <div
             class="block-title"
             v-if="extendPosts.length > 0"
@@ -56,10 +60,22 @@
             </g-link>
           </div>
 
+          <!-- 分享文章 -->
           <div class="block-title">
             分享這篇文章
           </div>
           <ShareLinks :post="$page.post" />
+          
+          <!-- 留言板 -->
+          <div class="comments">
+            <vue-disqus
+              shortname="chamillioner"
+              :identifier="$page.post.title"
+              :url="`${$page.metadata.siteUrl}${$page.post.path}`"
+            ></vue-disqus>
+          </div>
+          
+          <!-- 系列文章 -->
           <div
             class="pages flex-ac flex-jb mobile-wrap"
             v-if="!(seriesPostData.length > 0)"
@@ -83,7 +99,6 @@
             </g-link>
           </div>
         </div>
-
         <div class="content">
           <div
             class="block-title"
@@ -94,6 +109,7 @@
           <SeriesPost :postList="seriesPostData" />
         </div>
 
+        <!-- 相關文章 -->
         <div class="content">
           <div class="block-title">
             相關文章
@@ -466,7 +482,7 @@ export default {
   },
 
   mounted() {
-    console.log(this.$page.metadata)
+    console.log(this.$page.post.title)
   },
 
   methods: {

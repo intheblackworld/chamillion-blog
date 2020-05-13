@@ -1,9 +1,8 @@
-@import './reset.scss';
-@import './class.scss';
-@import './font.scss';
-@import './swiper.scss';
-@import './markdown.scss';
-
+@import "./reset.scss";
+@import "./class.scss";
+@import "./font.scss";
+@import "./swiper.scss";
+@import "./markdown.scss";
 
 body {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -103,11 +102,16 @@ body {
   transform: translate(-2em, 0);
 }
 
+.mt-4 {
+  margin-top: 2rem;
+}
+.mb-4 {
+  margin-bottom: 2rem;
+}
 
 /* 螢幕尺寸標準 */
 /* 平板尺寸 */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-
 }
 
 /* 螢幕尺寸標準 */

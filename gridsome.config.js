@@ -4,6 +4,27 @@
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
+var embedConfig = {
+  'enabledProviders': ['Youtube', 'Vimeo', 'Gist', 'Codepen', 'JSFiddle', 'Giphy'], 
+  'Youtube': {
+    template: './src/embedTemplates/Youtube.hbs',
+  },
+  'Vimeo': {
+    template: './src/embedTemplates/Vimeo.hbs',
+  },
+  'Giphy': {
+    template: './src/embedTemplates/Giphy.hbs',
+  },
+  'JSFiddle': {
+    template: './src/embedTemplates/JSFiddle.hbs',
+    secureConnection: true
+  },
+  'Codepen': {
+    template: './src/embedTemplates/Codepen.hbs',
+  },
+
+};
+
 module.exports = {
   siteName: 'Mr.變色龍 | 適應環境 - 登峰造極 | 通往財富的自由之路', // meta title
   siteDescription: '', // meta description
@@ -11,6 +32,8 @@ module.exports = {
   // github page
   // siteUrl: 'https://intheblackworld.github.io',
   // pathPrefix: '/chamillion-blog',
+  icon: 'src/favicon.png',
+
 
   // CNAME
   siteUrl: 'https://chamillioner.com',
@@ -30,6 +53,7 @@ module.exports = {
         typeName: 'Post',
         path: 'content/post/**/*.md',
         // route: '/post/:title', // 代表 graphQL 的 path 值
+        // route: '/blog/:year/:month/:day/:slug',
         refs: {
           tags: {
             typeName: 'Tag',
@@ -46,7 +70,12 @@ module.exports = {
             route: '/series/:id',
             create: true,
           }
-        }
+        },
+        remark: {
+          plugins: [
+            ['@noxify/gridsome-plugin-remark-embed', embedConfig]
+          ]
+        },
       }
     },
     // 全文檢索套件
@@ -70,7 +99,39 @@ module.exports = {
           }
         }
       }
-    }
+    },
+    {
+      use: '@gridsome/plugin-sitemap',
+      options: {
+        cacheTime: 600000, // default
+        config: {
+          '/content/*': {
+            changefreq: 'weekly',
+            priority: 0.7
+          },
+          // '/resources/*': {
+          //   changefreq: 'weekly',
+          //   priority: 0.5
+          // },
+          // '/news/*': {
+          //   changefreq: 'weekly',
+          //   priority: 0.5
+          // }
+        }
+      }
+    },
+    {
+      use: 'gridsome-plugin-robots-txt',
+      options: {
+        policy: [{
+          userAgent: "*",
+          allow: "/",
+          disallow: ["/search", "/admin", "/user"],
+          crawlDelay: 2,
+          cleanParam: "ref /content/"
+        }]
+      }
+    },
   ],
 
   template: {
@@ -87,15 +148,14 @@ module.exports = {
       component: '~/templates/Series.vue'
     }],
   },
-
-  transformers: {
-    remark: {
-      // global remark options
-      externalLinksTarget: '_blank',
-      externalLinksRel: ['nofollow', 'noopener', 'noreferrer'],
-      anchorClassName: 'icon icon-link',
-    }
-  },
+  // transformers: {
+  //   remark: {
+  //     // global remark options
+  //     externalLinksTarget: '_blank',
+  //     externalLinksRel: ['nofollow', 'noopener', 'noreferrer'],
+  //     anchorClassName: 'icon icon-link',
+  //   }
+  // },
   port: 8080,
   outputDir: 'dist'
 }
